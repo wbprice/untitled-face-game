@@ -10,7 +10,7 @@
 
 import {
     mapState
-} from 'vuex';
+} from 'vuex'
 
 export default {
     name: 'RoundGoal',
@@ -48,28 +48,28 @@ export default {
         margin: 0;
         text-shadow:
             3px 3px 0 #000,
-            -1px -1px 0 #000,  
+            -1px -1px 0 #000,
             1px -1px 0 #000,
             -1px  1px 0 #000,
             1px  1px 0 #000;
     }
 
     @keyframes shake {
-        0% { 
+        0% {
             transform: rotate(.025turn);
         }
         49%{
             transform: rotate(.025turn);
         }
-        50% { 
+        50% {
             transform: rotate(-.025turn);
         }
-        100% { 
+        100% {
             transform: rotate(-.025turn);
         }
     }
 
-    .shake { 
+    .shake {
         animation: shake 1s ease infinite;
     }
 </style>

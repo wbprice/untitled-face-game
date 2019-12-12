@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import PlayScreen from './PlayScreen';
+import PlayScreen from './PlayScreen'
 
 export default {
     name: 'Setup',
     components: {
         PlayScreen
     }
-};
+}
 </script>
 
 <style>

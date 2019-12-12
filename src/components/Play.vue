@@ -47,15 +47,15 @@ export default {
         ])
     },
     mounted() {
-        this.SET_ROUND_ORDER();
+        this.SET_ROUND_ORDER()
         this.gameloop = setInterval(() => {
             if (this.countingDown) {
-                this.DECREMENT_TIMER();
+                this.DECREMENT_TIMER()
             }
-        }, 500);
+        }, 500)
     },
     beforeDestroy() {
-        clearInterval(this.gameloop);
+        clearInterval(this.gameloop)
     }
 }
 </script>

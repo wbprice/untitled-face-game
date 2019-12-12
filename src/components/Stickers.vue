@@ -1,9 +1,9 @@
 <template>
     <div id="stickers">
         <template v-for="(face, index) in faces">
-            <div 
+            <div
                 class="faceRect"
-                v-bind:key="index" 
+                v-bind:key="index"
                 v-bind:style="positionFaceRect(face)">
                 <template v-if="config.debug">
                     <DebugSticker />
@@ -19,10 +19,10 @@
 <script>
 import {
     mapState
-} from 'vuex';
+} from 'vuex'
 
-import DebugSticker from './DebugSticker';
-import ScoreSticker from './ScoreSticker';
+import DebugSticker from './DebugSticker'
+import ScoreSticker from './ScoreSticker'
 
 export default {
     name: 'Stickers',
@@ -38,16 +38,16 @@ export default {
     },
     methods: {
         positionFaceRect(face) {
-            const rect = face.faceRectangle;
+            const rect = face.faceRectangle
             return {
                 height: `${rect.height}px`,
                 width: `${rect.width}px`,
                 top: `${rect.top + 32}px`,
                 left: `${rect.left + 32}px`
-            };
+            }
         }
     }
-};
+}
 </script>
 
 <style scoped>

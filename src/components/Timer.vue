@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import Icon from './Icon';
+import Icon from './Icon'
 import {
     mapState
-} from 'vuex';
+} from 'vuex'
 
 export default {
     name: 'Timer',
@@ -24,10 +24,10 @@ export default {
             'timer'
         ]),
         countingDown() {
-            return this.timer > 0;
+            return this.timer > 0
         }
     }
-};
+}
 </script>
 
 <style>
@@ -49,13 +49,13 @@ export default {
         height: 200px;
         width: 200px;
         line-height: 48px;
-        clip-path: polygon(0% 15%, 
+        clip-path: polygon(0% 15%,
                            12% 55%,
                            42% 31%,
                            36% 75%,
                            77% 61%,
                            65% 92%,
-                           100% 100%, 
+                           100% 100%,
                            0% 100%);
     }
 

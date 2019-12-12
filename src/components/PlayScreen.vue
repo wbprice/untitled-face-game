@@ -63,9 +63,9 @@ function requestVideo(mirr) {
  */
 
 function onCanPlay() {
-    getVideoSize.call(this);
-    setCanvasRect.call(this);
-    this.SET_COUNTING_DOWN(true);
+    getVideoSize.call(this)
+    setCanvasRect.call(this)
+    this.SET_COUNTING_DOWN(true)
     this.paintCanvasInterval = setInterval(paintCanvas.bind(this), 16.67)
 }
 
@@ -105,7 +105,7 @@ function paintCanvas() {
  */
 
 function getVideoSize(video) {
-    const { videoWidth, videoHeight } = this.$refs.video;
+    const { videoWidth, videoHeight } = this.$refs.video
     this.SET_VIDEO_SIZE({width: videoWidth, height: videoHeight})
 }
 
@@ -162,7 +162,7 @@ function scaleVideo() {
             default:
                 return centered
         }
-    })();
+    })()
     return strategy.call(this)
 }
 
@@ -189,7 +189,7 @@ function centered() {
         destYOffset: destYOffset,
         destWidth: srcWidth,
         destHeight: srcHeight
-    };
+    }
 }
 
 /**
@@ -252,12 +252,12 @@ function fitByWidth() {
  */
 
 function captureFaces(newFaces, oldFaces) {
-    const { main } = this.$refs;
+    const { main } = this.$refs
     const faceCanvas = this.$refs.face
     const context = faceCanvas.getContext('2d')
 
     if (!newFaces.length) {
-        return;
+        return
     }
 
     return Promise.all(newFaces.map(face => {
@@ -278,12 +278,12 @@ function captureFaces(newFaces, oldFaces) {
             )
 
             faceCanvas.toBlob((blob) => {
-                face.blob = blob;
+                face.blob = blob
                 this.SAVE_FACE_TO_EMOTION(face)
-                resolve();
+                resolve()
             }, 'image/jpeg', 1)
-        });
-    }));
+        })
+    }))
 }
 
 export default {
@@ -321,7 +321,7 @@ export default {
             'scoreEmotion'
         ])
     }
-};
+}
 
 </script>
 

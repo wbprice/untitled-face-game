@@ -56,6 +56,6 @@
 export default {
     name: 'ScoreSticker',
     props: ['face', 'rank']
-};
+}
 </script>
 
