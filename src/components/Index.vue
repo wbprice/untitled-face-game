@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import DemoMode from './DemoMode';
+import DemoMode from './DemoMode'
 
 export default {
     name: 'Index',
@@ -43,7 +43,7 @@ export default {
     header {
         margin-bottom: 2em;
     }
-    
+
     header h1, header p {
         margin: 0;
     }
@@ -100,7 +100,7 @@ export default {
         width: 125px;
         height: 125px;
     }
-    
+
     h2 {
         font-size: 3em;
         color: white;
