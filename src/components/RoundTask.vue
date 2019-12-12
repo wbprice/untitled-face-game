@@ -22,11 +22,11 @@ export default {
             'countingDown'
         ]),
         task() {
-            const task = this.rounds[this.roundIndex];
-            return task && task.label;
+            const task = this.rounds[this.roundIndex]
+            return task && task.label
         }
     }
-};
+}
 </script>
 
 <style scoped>

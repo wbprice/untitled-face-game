@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import Timer from './Timer';
+import Timer from './Timer'
 
 import {
     mapActions,
     mapState,
     mapMutations
-} from 'vuex';
+} from 'vuex'
 
 import {
     SET_COUNTING_DOWN,
@@ -26,7 +26,7 @@ import {
     SET_CANVAS_RECT,
     SET_VIDEO_SRC_RECT,
     SET_VIDEO_SIZE
-} from './../store/mutation-types';
+} from './../store/mutation-types'
 
 /**
  * @name requestVideo
@@ -37,20 +37,20 @@ import {
  */
 
 function requestVideo(mirr) {
-    const { video } = this.$refs;
+    const { video } = this.$refs
 
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
         .then(stream => {
-            const vendorUrl = window.URL || window.webkitURL;
-            video.src = vendorUrl.createObjectURL(stream);
-            video.play();
+            const vendorUrl = window.URL || window.webkitURL
+            video.src = vendorUrl.createObjectURL(stream)
+            video.play()
         })
         .catch(error => {
             this.SET_ALERT({
                 message: 'This game needs your permission to record video :(((',
                 level: 'danger'
-            });
-        });
+            })
+        })
 }
 
 /**
@@ -66,7 +66,7 @@ function onCanPlay() {
     getVideoSize.call(this);
     setCanvasRect.call(this);
     this.SET_COUNTING_DOWN(true);
-    this.paintCanvasInterval = setInterval(paintCanvas.bind(this), 16.67);
+    this.paintCanvasInterval = setInterval(paintCanvas.bind(this), 16.67)
 }
 
 /**
@@ -76,7 +76,7 @@ function onCanPlay() {
  */
 
 function onDestroy() {
-    clearInterval(this.paintCanvasInterval);
+    clearInterval(this.paintCanvasInterval)
 }
 
 /**
@@ -88,14 +88,14 @@ function onDestroy() {
  */
 
 function paintCanvas() {
-    const { main } = this.$refs;
+    const { main } = this.$refs
     if (this.countingDown) {
-        paintContext.call(this);
+        paintContext.call(this)
     } else if (this.shouldScoreEmotion) {
-        this.SET_SHOULD_SCORE_EMOTION(false);
+        this.SET_SHOULD_SCORE_EMOTION(false)
         return main.toBlob((blob) => {
-            return this.scoreEmotion(blob);
-        }, 'image/jpeg', 1);
+            return this.scoreEmotion(blob)
+        }, 'image/jpeg', 1)
     }
 }
 /**
@@ -106,7 +106,7 @@ function paintCanvas() {
 
 function getVideoSize(video) {
     const { videoWidth, videoHeight } = this.$refs.video;
-    this.SET_VIDEO_SIZE({width: videoWidth, height: videoHeight});
+    this.SET_VIDEO_SIZE({width: videoWidth, height: videoHeight})
 }
 
 /**
@@ -116,8 +116,8 @@ function getVideoSize(video) {
  */
 
 function setCanvasRect(mirror) {
-    const { width, height, x, y } = this.$refs.mirror.getClientRects()[0];
-    this.SET_CANVAS_RECT({width: width - 32, height: height - 32, x, y});
+    const { width, height, x, y } = this.$refs.mirror.getClientRects()[0]
+    this.SET_CANVAS_RECT({width: width - 32, height: height - 32, x, y})
 }
 
 /**
@@ -126,9 +126,9 @@ function setCanvasRect(mirror) {
  */
 
 function paintContext() {
-    const { main, video } = this.$refs;
-    const dims = scaleVideo.call(this);
-    const context = main.getContext('2d');
+    const { main, video } = this.$refs
+    const dims = scaleVideo.call(this)
+    const context = main.getContext('2d')
 
     context.drawImage(
         video,
@@ -140,7 +140,7 @@ function paintContext() {
         dims.destYOffset,
         dims.destWidth,
         dims.destHeight
-    );
+    )
 }
 
 /**
@@ -150,20 +150,20 @@ function paintContext() {
  */
 
 function scaleVideo() {
-    const { width, height } = this.canvasRect;
-    const orientation = width > height ? 'landscape' : 'vertical';
+    const { width, height } = this.canvasRect
+    const orientation = width > height ? 'landscape' : 'vertical'
 
     const strategy = (() => {
         switch (orientation) {
             case 'vertical':
-                return fitByHeight;
+                return fitByHeight
             case 'landscape':
-                return fitByWidth;
+                return fitByWidth
             default:
-                return centered;
+                return centered
         }
     })();
-    return strategy.call(this);
+    return strategy.call(this)
 }
 
 /**
@@ -173,12 +173,12 @@ function scaleVideo() {
  */
 
 function centered() {
-    const srcWidth = this.videoSrcSize.width;
-    const srcHeight = this.videoSrcSize.height;
-    const destWidth = this.canvasRect.width;
-    const destHeight = this.canvasRect.height;
-    const destXOffset = (destWidth - srcWidth) / 2;
-    const destYOffset = (destHeight - srcHeight) / 2;
+    const srcWidth = this.videoSrcSize.width
+    const srcHeight = this.videoSrcSize.height
+    const destWidth = this.canvasRect.width
+    const destHeight = this.canvasRect.height
+    const destXOffset = (destWidth - srcWidth) / 2
+    const destYOffset = (destHeight - srcHeight) / 2
 
     return {
         srcXOffset: 0,
@@ -199,12 +199,12 @@ function centered() {
  */
 
 function fitByHeight() {
-    const srcWidth = this.videoSrcSize.width;
-    const srcHeight = this.videoSrcSize.height;
-    const destHeight = this.canvasRect.height;
-    const verticalScalingFactor = destHeight / srcHeight;
-    const destWidth = srcWidth * verticalScalingFactor;
-    const destXOffset = (this.canvasRect.width - destWidth) / 2;
+    const srcWidth = this.videoSrcSize.width
+    const srcHeight = this.videoSrcSize.height
+    const destHeight = this.canvasRect.height
+    const verticalScalingFactor = destHeight / srcHeight
+    const destWidth = srcWidth * verticalScalingFactor
+    const destXOffset = (this.canvasRect.width - destWidth) / 2
 
     return {
         srcXOffset: 0,
@@ -215,7 +215,7 @@ function fitByHeight() {
         destYOffset: 0,
         destWidth: destWidth,
         destHeight: destHeight
-    };
+    }
 }
 
 /**
@@ -225,12 +225,12 @@ function fitByHeight() {
  */
 
 function fitByWidth() {
-    const srcWidth = this.videoSrcSize.width;
-    const srcHeight = this.videoSrcSize.height;
-    const destWidth = this.canvasRect.width;
-    const horizontalScalingFactor = destWidth / srcWidth;
-    const destHeight = srcHeight * horizontalScalingFactor;
-    const destYOffset = (this.canvasRect.height - destHeight) / 2;
+    const srcWidth = this.videoSrcSize.width
+    const srcHeight = this.videoSrcSize.height
+    const destWidth = this.canvasRect.width
+    const horizontalScalingFactor = destWidth / srcWidth
+    const destHeight = srcHeight * horizontalScalingFactor
+    const destYOffset = (this.canvasRect.height - destHeight) / 2
 
     return {
         srcXOffset: 0,
@@ -241,7 +241,7 @@ function fitByWidth() {
         destYOffset: destYOffset,
         destWidth: destWidth,
         destHeight: destHeight
-    };
+    }
 }
 
 /**
@@ -253,8 +253,8 @@ function fitByWidth() {
 
 function captureFaces(newFaces, oldFaces) {
     const { main } = this.$refs;
-    const faceCanvas = this.$refs.face;
-    const context = faceCanvas.getContext('2d');
+    const faceCanvas = this.$refs.face
+    const context = faceCanvas.getContext('2d')
 
     if (!newFaces.length) {
         return;
@@ -264,10 +264,10 @@ function captureFaces(newFaces, oldFaces) {
         return new Promise((resolve, reject) => {
             const {
                 height, width, left, top
-            } = face.faceRectangle;
+            } = face.faceRectangle
 
-            faceCanvas.width = width;
-            faceCanvas.height = height;
+            faceCanvas.width = width
+            faceCanvas.height = height
 
             context.drawImage(
                 main,
@@ -275,13 +275,13 @@ function captureFaces(newFaces, oldFaces) {
                 width, height,
                 0, 0,
                 width, height
-            );
+            )
 
             faceCanvas.toBlob((blob) => {
                 face.blob = blob;
-                this.SAVE_FACE_TO_EMOTION(face);
+                this.SAVE_FACE_TO_EMOTION(face)
                 resolve();
-            }, 'image/jpeg', 1);
+            }, 'image/jpeg', 1)
         });
     }));
 }

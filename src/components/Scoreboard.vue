@@ -1,7 +1,7 @@
 <template>
     <div class="scoreboard">
         <h1>Scores</h1>
-        
+
         <router-link to="/play" class="button">Play Again</router-link>
 
         <template v-for="(round, index) in rounds">
@@ -25,13 +25,13 @@
 import {
     mapState,
     mapMutations
-} from 'vuex';
+} from 'vuex'
 
 import {
     SET_ALERT
-} from './../store/mutation-types';
+} from './../store/mutation-types'
 
-import router from './../router/';
+import router from './../router/'
 
 export default {
     name: 'Scoreboard',
@@ -40,7 +40,7 @@ export default {
             SET_ALERT
         ]),
         getObjectUrl(blob) {
-            return URL.createObjectURL(blob);
+            return URL.createObjectURL(blob)
         }
     },
     computed: {
@@ -52,13 +52,13 @@ export default {
     },
     mounted() {
         if (this.config.demoMode) {
-            this.SET_ALERT({message: 'Next game starting soon!', level: 'success'});
+            this.SET_ALERT({message: 'Next game starting soon!', level: 'success'})
             setTimeout(() => {
-                router.push('/play');
-            }, this.config.displayScoreboardTime * 1000);
+                router.push('/play')
+            }, this.config.displayScoreboardTime * 1000)
         }
     }
-};
+}
 </script>
 
 <style>

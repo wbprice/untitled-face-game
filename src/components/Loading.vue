@@ -11,14 +11,14 @@
 <script>
 import {
     mapState
-} from 'vuex';
+} from 'vuex'
 
 export default {
     name: 'loading',
     computed: {
         ...mapState(['fetching'])
     }
-};
+}
 </script>
 
 <style>
