@@ -1,0 +1,47 @@
+body {
+    background: rgb(230, 185, 73);
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Amatic SC', cursive;
+}
+
+.outline {
+    color: white;
+    text-shadow:
+        3px 3px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px  1px 0 #000,
+        1px  1px 0 #000;
+}
+
+.hard-shadow {
+    box-shadow: .4em .4em 0 1em black;
+}
+
+.button, .button:visited {
+    background: white;
+    text-decoration: none;
+    padding: .75em 1em;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 6px solid #dba530;
+    color: black;
+}
+
+.button:focus, .button:hover, .button:active {
+    background: #dba530;
+    color: white;
+}
+
+h1 {
+    font-size: 4em;
+    color: white;
+    text-shadow:
+        3px 3px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px  1px 0 #000,
+        1px  1px 0 #000;
+}
