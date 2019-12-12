@@ -1,11 +1,11 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Index from '@/components/Index';
-import Play from '@/components/Play';
-import Scoreboard from '@/components/Scoreboard';
-import Setup from '@/components/Setup';
+import Vue from 'vue'
+import Router from 'vue-router'
+import Index from '@/components/Index'
+import Play from '@/components/Play'
+import Scoreboard from '@/components/Scoreboard'
+import Setup from '@/components/Setup'
 
-Vue.use(Router);
+Vue.use(Router)
 
 export default new Router({
   mode: 'history',
@@ -31,4 +31,4 @@ export default new Router({
       component: Setup
     }
   ]
-});
+})

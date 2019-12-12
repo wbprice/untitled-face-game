@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @name
@@ -12,7 +12,7 @@
  * @return {number}
  */
 function getScore(scores, emotion) {
-    return Math.round(scores[emotion] * 100);
+    return Math.round(scores[emotion] * 100)
 }
 
 /**
@@ -31,15 +31,15 @@ function sortByEmotionScore(faces, targetEmotion) {
     return faces.map(face => {
         return Object.assign({}, face, {
             game: { score: getScore(face.scores, targetEmotion)
-        }});
+        }})
     }).sort((a, b) => {
         if (a.game.score > b.game.score) {
-            return -1;
+            return -1
         } else if (a.game.score < b.game.score) {
-            return 1;
+            return 1
         }
-        return 0;
-    });
+        return 0
+    })
 }
 
-export default sortByEmotionScore;
+export default sortByEmotionScore

@@ -13,13 +13,13 @@ import {
     mapMutations,
     mapState,
     mapActions
-} from 'vuex';
+} from 'vuex'
 
-import PlayScreen from './PlayScreen';
-import RoundTask from './RoundTask';
-import Loading from './Loading';
-import Stickers from './Stickers';
-import Flash from './Flash';
+import PlayScreen from './PlayScreen'
+import RoundTask from './RoundTask'
+import Loading from './Loading'
+import Stickers from './Stickers'
+import Flash from './Flash'
 
 export default {
     name: 'Play',
@@ -57,7 +57,7 @@ export default {
     beforeDestroy() {
         clearInterval(this.gameloop);
     }
-};
+}
 </script>
 
 <style>

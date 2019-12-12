@@ -30,7 +30,7 @@ export default {
     methods: {
         ...mapMutations(['TOGGLE_DEMO_MODE'])
     }
-};
+}
 </script>
 
 <style>

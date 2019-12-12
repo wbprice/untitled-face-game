@@ -36,7 +36,7 @@ export default {
     components: {
         DemoMode
     }
-};
+}
 </script>
 
 <style scoped>

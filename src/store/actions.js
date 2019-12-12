@@ -1,23 +1,23 @@
-'use strict';
+'use strict'
 
-import router from './../router/';
-import 'whatwg-fetch';
-import checkStatus from 'fetch-check-http-status';
-import sortByEmotionScore from './utils/sortByEmotionScore';
-import { blobToBase64String } from 'blob-util';
+import router from './../router/'
+import 'whatwg-fetch'
+import checkStatus from 'fetch-check-http-status'
+import sortByEmotionScore from './utils/sortByEmotionScore'
+import { blobToBase64String } from 'blob-util'
 
 const {
     AZURE_FUNC_EMOTION_API_ENDPOINT,
     EMOTION_API_ENDPOINT,
     EMOTION_API_KEY
-} = process.env;
+} = process.env
 
 import {
     SCORE_EMOTION_REQUEST,
     SCORE_EMOTION_SUCCESS,
     QUEUE_NEXT_ROUND,
     SCORE_EMOTION_FAILURE
-} from './mutation-types';
+} from './mutation-types'
 
 /**
  * @name
@@ -38,7 +38,7 @@ function postFaceToEmotionAPI(blob) {
             'Ocp-Apim-Subscription-Key': EMOTION_API_KEY
         }),
         body: blob
-    });
+    })
 }
 
 /**
@@ -63,8 +63,8 @@ function postFaceToAzureFunc(blob) {
             body: JSON.stringify({
                 data: base64
             })
-        });
-    });
+        })
+    })
 }
 
 /**
@@ -80,9 +80,9 @@ function postFaceToAzureFunc(blob) {
 
 function postFace(blob) {
     if (EMOTION_API_KEY === 'undefined') {
-        return postFaceToAzureFunc(blob);
+        return postFaceToAzureFunc(blob)
     }
-    return postFaceToEmotionAPI(blob);
+    return postFaceToEmotionAPI(blob)
 }
 
 /**
@@ -95,19 +95,19 @@ function postFace(blob) {
  */
 
 function scoreEmotion({state, commit}, blob) {
-    commit(SCORE_EMOTION_REQUEST);
+    commit(SCORE_EMOTION_REQUEST)
     return postFace(blob)
         .then(checkStatus)
         .then(response => response.json())
         .then(response => {
-            commit(SCORE_EMOTION_SUCCESS, sortByEmotionScore(response, state.rounds[state.roundIndex].value));
+            commit(SCORE_EMOTION_SUCCESS, sortByEmotionScore(response, state.rounds[state.roundIndex].value))
             setTimeout(() => {
-                startNextRound({state, commit});
-            }, state.config.displayScoreTime * 1000);
+                startNextRound({state, commit})
+            }, state.config.displayScoreTime * 1000)
         })
         .catch(error => {
-            commit(SCORE_EMOTION_FAILURE, error);
-        });
+            commit(SCORE_EMOTION_FAILURE, error)
+        })
 }
 
 /**
@@ -119,12 +119,12 @@ function scoreEmotion({state, commit}, blob) {
  */
 
 function startNextRound({state, commit}) {
-    commit(QUEUE_NEXT_ROUND);
+    commit(QUEUE_NEXT_ROUND)
     if (state.roundIndex > state.rounds.length - 1) {
-        router.push('/scoreboard');
+        router.push('/scoreboard')
     }
 }
 
 export default {
     scoreEmotion
-};
+}

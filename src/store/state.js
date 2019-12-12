@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 export default {
     // The order of rounds to play.
@@ -37,4 +37,4 @@ export default {
     videoSrcSize: {
 
     }
-};
+}

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @typedef {object} Alert
@@ -6,15 +6,15 @@
  * @property {string} level - What kind of alert? eg: 'warning', 'success', 'info', 'danger'
  */
 
-import shuffle from 'lodash.shuffle';
-import getRounds from './utils/rounds';
+import shuffle from 'lodash.shuffle'
+import getRounds from './utils/rounds'
 
 import {
     tick,
     pickup,
     success,
     hurt
-} from './../assets/sounds/';
+} from './../assets/sounds/'
 
 import {
     SET_ROUND_ORDER,
@@ -32,7 +32,7 @@ import {
     SET_VIDEO_SIZE,
     SET_CANVAS_RECT,
     HIDE_FLASH
-} from './mutation-types';
+} from './mutation-types'
 
 export default {
 
@@ -45,7 +45,7 @@ export default {
      */
 
     [SET_ALERT] (state, alert) {
-        state.alert = alert;
+        state.alert = alert
     },
 
     /**
@@ -57,9 +57,9 @@ export default {
      */
 
     [SET_ROUND_ORDER] (state) {
-        state.rounds = shuffle(getRounds());
-        state.roundIndex = 0;
-        state.alert = {};
+        state.rounds = shuffle(getRounds())
+        state.roundIndex = 0
+        state.alert = {}
     },
 
     /**
@@ -71,13 +71,13 @@ export default {
      */
 
     [QUEUE_NEXT_ROUND] (state) {
-        success.play();
-        state.faces = [];
-        state.alert = {};
-        state.timer = state.config.roundTime;
-        state.roundIndex = state.roundIndex + 1;
-        state.countingDown = true;
-        state.shouldScoreEmotion = true;
+        success.play()
+        state.faces = []
+        state.alert = {}
+        state.timer = state.config.roundTime
+        state.roundIndex = state.roundIndex + 1
+        state.countingDown = true
+        state.shouldScoreEmotion = true
     },
 
     /**
@@ -90,12 +90,12 @@ export default {
 
     [DECREMENT_TIMER] (state) {
         if (state.countingDown && state.timer) {
-            state.timer = state.timer - 1;
-            tick.play();
+            state.timer = state.timer - 1
+            tick.play()
         }
         if (!state.timer) {
-            pickup.play();
-            state.countingDown = false;
+            pickup.play()
+            state.countingDown = false
         }
     },
 
@@ -108,7 +108,7 @@ export default {
      */
 
     [TOGGLE_COUNTING_DOWN] (state) {
-        state.countingDown = !state.countingDown;
+        state.countingDown = !state.countingDown
     },
 
     /**
@@ -121,7 +121,7 @@ export default {
      */
 
     [SET_COUNTING_DOWN] (state, bool) {
-        state.countingDown = bool;
+        state.countingDown = bool
     },
 
     /**
@@ -133,7 +133,7 @@ export default {
      */
 
     [SET_SHOULD_SCORE_EMOTION] (state, bool) {
-        state.shouldScoreEmotion = bool;
+        state.shouldScoreEmotion = bool
     },
 
     /**
@@ -144,8 +144,8 @@ export default {
      */
 
     [SCORE_EMOTION_REQUEST] (state) {
-        state.fetching = true;
-        state.showFlash = true;
+        state.fetching = true
+        state.showFlash = true
     },
 
     /**
@@ -157,13 +157,13 @@ export default {
      */
 
     [SCORE_EMOTION_SUCCESS] (state, response) {
-        state.faces = response;
-        state.fetching = false;
+        state.faces = response
+        state.fetching = false
         if (state.faces.length === 0) {
             state.alert = {
                 message: 'No Faces Found',
                 level: 'danger'
-            };
+            }
         }
     },
 
@@ -175,13 +175,13 @@ export default {
      */
 
     [SCORE_EMOTION_FAILURE] (state, error) {
-        state.fetching = false;
-        hurt.play();
+        state.fetching = false
+        hurt.play()
         // TODO: Customize the alert based on the error message
         state.alert = {
             message: 'Emotion Score Error :((((',
             level: 'danger'
-        };
+        }
     },
 
     /**
@@ -192,7 +192,7 @@ export default {
      */
 
     [SAVE_FACE_TO_EMOTION] (state, face) {
-        state.rounds[state.roundIndex].results.push(face);
+        state.rounds[state.roundIndex].results.push(face)
     },
 
     /**
@@ -203,7 +203,7 @@ export default {
      */
 
     [TOGGLE_DEMO_MODE] (state) {
-        state.config.demoMode = !state.config.demoMode;
+        state.config.demoMode = !state.config.demoMode
     },
 
     /**
@@ -214,7 +214,7 @@ export default {
      */
 
     [SET_VIDEO_SIZE] (state, size) {
-       state.videoSrcSize = size;
+       state.videoSrcSize = size
     },
 
     /**
@@ -225,7 +225,7 @@ export default {
      */
 
     [SET_CANVAS_RECT] (state, rect) {
-       state.canvasRect = rect;
+       state.canvasRect = rect
     },
 
     /**
@@ -236,6 +236,6 @@ export default {
      */
 
     [HIDE_FLASH] (state) {
-       state.showFlash = false;
+       state.showFlash = false
     }
-};
+}

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @name
@@ -33,5 +33,5 @@ export default function getRounds() {
         value: 'surprise',
         label: 'Look Surprised!',
         results: []
-    }];
+    }]
 }

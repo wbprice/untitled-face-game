@@ -19,7 +19,7 @@ export default {
             'alert'
         ])
     }
-};
+}
 </script>
 
 <style>
