@@ -1,0 +1,17 @@
+<template>
+    <i class="material-icons md-48 icon">{{icon}}</i>
+</template>
+
+<script>
+export default {
+    name: 'Icon',
+    props: ['icon']
+};
+</script>
+
+<style scoped>
+    .material-icons.md-18 { font-size: 18px; }
+    .material-icons.md-24 { font-size: 24px; }
+    .material-icons.md-36 { font-size: 36px; }
+    .material-icons.md-48 { font-size: 48px; }
+</style>
