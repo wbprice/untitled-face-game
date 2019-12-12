@@ -41,8 +41,7 @@ function requestVideo(mirr) {
 
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
         .then(stream => {
-            const vendorUrl = window.URL || window.webkitURL
-            video.src = vendorUrl.createObjectURL(stream)
+            video.srcObject = stream
             video.play()
         })
         .catch(error => {
