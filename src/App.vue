@@ -6,14 +6,14 @@
 </template>
 
 <script>
-import Alert from './components/Alert';
+import Alert from './components/Alert'
 
 export default {
     name: 'app',
     components: {
         Alert
     }
-};
+}
 </script>
 
 <style>
