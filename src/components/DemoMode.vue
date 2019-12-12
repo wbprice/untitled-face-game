@@ -1,12 +1,12 @@
 <template>
     <div class="autoplay">
         <label
-            class="checkbox" 
+            class="checkbox"
             v-on:change="TOGGLE_DEMO_MODE"
             for="demo">
                 <div v-bind:class="[config.demoMode ? 'checked' : '', 'checkbox-indicator']"></div>
                 <input
-                    id="demo" 
+                    id="demo"
                     type="checkbox"
                     readonly
                     :value="config.demoMode" />
@@ -20,7 +20,7 @@
 import {
     mapState,
     mapMutations
-} from 'vuex';
+} from 'vuex'
 
 export default {
     name: 'DemoMode',
@@ -63,7 +63,7 @@ export default {
         border-radius: 4px;
         margin-right: .5em;
     }
-    
+
     .autoplay .checkbox-indicator.checked {
         background: black;
     }

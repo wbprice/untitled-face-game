@@ -11,7 +11,7 @@ import {
     mapMutations,
     mapState,
     mapActions
-} from 'vuex';
+} from 'vuex'
 
 export default {
     name: 'flash',
@@ -22,8 +22,8 @@ export default {
         fetching: function (newState, oldState) {
             if (newState === true) {
                 setTimeout(() => {
-                    this.HIDE_FLASH();
-                }, 1000);
+                    this.HIDE_FLASH()
+                }, 1000)
             }
         }
     },

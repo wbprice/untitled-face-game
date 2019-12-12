@@ -11,7 +11,7 @@
 <script>
 import {
     mapState
-} from 'vuex';
+} from 'vuex'
 export default {
     name: 'Alert',
     computed: {
