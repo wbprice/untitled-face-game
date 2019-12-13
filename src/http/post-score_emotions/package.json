@@ -2,6 +2,7 @@
   "name": "begin-app-post-score_emotions",
   "dependencies": {
     "@architect/functions": "latest",
-    "@begin/data": "latest"
+    "@begin/data": "latest",
+    "request": "2.88.0"
   }
 }
