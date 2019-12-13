@@ -1,15 +1,12 @@
-# Warning: do not edit
-# --------------------
-# This is a generated file and will be overwritten
-
 @app
-begin-app
+green-pp7
 
 @static
 folder dist
 
 @http
 get /api
+post /score-emotions
 
 @tables
 data
