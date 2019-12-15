@@ -1,4 +1,4 @@
-# Begin basic Vue app + API
+# Untitled Face Game
 
 [![Begin build status](https://buildstatus.begin.app/green-pp7/status.svg)](https://begin.com)
 
