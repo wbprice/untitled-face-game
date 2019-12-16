@@ -7,7 +7,7 @@ import sortByEmotionScore from './utils/sortByEmotionScore'
 import { blobToBase64String } from 'blob-util'
 
 const {
-    AZURE_FUNC_EMOTION_API_ENDPOINT,
+    VUE_APP_AZURE_FUNC_EMOTION_API_ENDPOINT,
     EMOTION_API_ENDPOINT,
     EMOTION_API_KEY
 } = process.env
@@ -55,7 +55,7 @@ function postFaceToEmotionAPI(blob) {
 function postFaceToAzureFunc(blob) {
     return blobToBase64String(blob)
     .then(base64 => {
-        return fetch(AZURE_FUNC_EMOTION_API_ENDPOINT, {
+        return fetch(VUE_APP_AZURE_FUNC_EMOTION_API_ENDPOINT, {
             method: 'post',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ function postFaceToAzureFunc(blob) {
  */
 
 function postFace(blob) {
-    if (EMOTION_API_KEY === 'undefined') {
+    if (EMOTION_API_KEY === 'undefined' || !EMOTION_API_KEY) {
         return postFaceToAzureFunc(blob)
     }
     return postFaceToEmotionAPI(blob)
