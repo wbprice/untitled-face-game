@@ -31,7 +31,7 @@ function getEmotions(image, callback) {
   })
 }
 
-module.exports = function(req) {
+module.exports = async function(req) {
   const image = req.body
 
   getEmotions(image, (err, response) => {
