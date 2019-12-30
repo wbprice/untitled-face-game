@@ -3,8 +3,6 @@
   "dependencies": {
     "@architect/functions": "latest",
     "@begin/data": "latest",
-    "request": "2.70.0",
-    "blob": "latest",
-    "atob": "latest"
+    "got": "^10.2.0"
   }
 }
