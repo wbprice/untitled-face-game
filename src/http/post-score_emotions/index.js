@@ -1,52 +1,23 @@
-const request = require("request")
-const { FACE_API_KEY, FACE_API_URL } = process.env
 
-const headers = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Credentials": true
-}
 
-function getEmotions(image, callback) {
-  const params = {
-    returnFaceAttributes: "emotion"
-  }
 
-  const options = {
-    uri: FACE_API_URL,
-    qs: params,
-    body: image,
+exports.handler = async function(req) {
+
+  const body = Buffer.from(req.body, 'base64')
+
+  console.log(body)
+  console.log(Object.keys(req))
+  console.log(JSON.stringify(req.headers, null, 2))
+  console.log(JSON.stringify(req.isBase64Encoded, null, 2))
+
+  console.log("POST post-score_emotions")
+  return {
     headers: {
-      "Content-Type": "application/octet-stream",
-      "Ocp-Apim-Subscription-Key": FACE_API_KEY
-    }
+      'content-type': 'application/json; charset=utf8',
+      'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
+    },
+    body: JSON.stringify({
+      message: 'Hello from the post-score_emotions handler'
+    })
   }
-
-  request.post(options, (error, response, body) => {
-    if (error) {
-      console.log("Error: " + error)
-      return callback(error)
-    }
-
-    callback(null, JSON.parse(body))
-  })
-}
-
-module.exports = async function(req) {
-  const image = req.body
-
-  getEmotions(image, (err, response) => {
-    if (err) {
-      return {
-        status: 400,
-        headers,
-        body: "Please pass a name on the query string or in the request body"
-      }
-    }
-
-    return {
-      status: 200,
-      headers,
-      body: JSON.stringify(response)
-    }
-  })
 }
