@@ -28,9 +28,12 @@ function getScore(scores, emotion) {
  */
 
 function sortByEmotionScore(faces, targetEmotion) {
+
+    console.log(faces)
+
     return faces.map(face => {
         return Object.assign({}, face, {
-            game: { score: getScore(face.scores, targetEmotion)
+            game: { score: getScore(face.faceAttributes.emotion, targetEmotion)
         }})
     }).sort((a, b) => {
         if (a.game.score > b.game.score) {

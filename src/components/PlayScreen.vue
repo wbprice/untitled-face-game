@@ -94,7 +94,7 @@ function paintCanvas() {
         this.SET_SHOULD_SCORE_EMOTION(false)
         return main.toBlob((blob) => {
             return this.scoreEmotion(blob)
-        }, 'image/jpeg', 1)
+        }, 'image/jpeg', .75)
     }
 }
 /**
@@ -280,7 +280,7 @@ function captureFaces(newFaces, oldFaces) {
                 face.blob = blob
                 this.SAVE_FACE_TO_EMOTION(face)
                 resolve()
-            }, 'image/jpeg', 1)
+            }, 'image/jpeg', .75)
         })
     }))
 }

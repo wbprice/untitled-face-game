@@ -4,7 +4,7 @@ import router from './../router/'
 import 'whatwg-fetch'
 import checkStatus from 'fetch-check-http-status'
 import sortByEmotionScore from './utils/sortByEmotionScore'
-import { blobToBase64String } from 'blob-util'
+// import { blobToBase64String } from 'blob-util'
 
 const {
     VUE_APP_AZURE_FUNC_EMOTION_API_ENDPOINT,
@@ -53,17 +53,12 @@ function postFaceToEmotionAPI(blob) {
  */
 
 function postFaceToAzureFunc(blob) {
-    return blobToBase64String(blob)
-    .then(base64 => {
-        return fetch(VUE_APP_AZURE_FUNC_EMOTION_API_ENDPOINT, {
-            method: 'post',
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
-            body: JSON.stringify({
-                data: base64
-            })
-        })
+    return fetch(VUE_APP_AZURE_FUNC_EMOTION_API_ENDPOINT, {
+        method: 'post',
+        headers: new Headers({
+            'Content-Type': 'application/octet-stream'
+        }),
+        body: blob
     })
 }
 
