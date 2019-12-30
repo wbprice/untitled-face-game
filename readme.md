@@ -2,7 +2,7 @@
 
 [![Begin build status](https://buildstatus.begin.app/green-pp7/status.svg)](https://begin.com)
 
-Put on your game face, powered by [Begin](https://begin.com)-based API endpoints.
+Put on your game face. Powered by [Begin](https://begin.com)-based API endpoints.
 
 
 ## Getting started
