@@ -6,7 +6,6 @@ import checkStatus from 'fetch-check-http-status'
 import sortByEmotionScore from './utils/sortByEmotionScore'
 
 const {
-    VUE_APP_AZURE_FUNC_EMOTION_API_ENDPOINT,
     EMOTION_API_ENDPOINT,
     EMOTION_API_KEY
 } = process.env
@@ -52,7 +51,7 @@ function postFaceToEmotionAPI(blob) {
  */
 
 function postFaceToAzureFunc(blob) {
-    return fetch(VUE_APP_AZURE_FUNC_EMOTION_API_ENDPOINT, {
+    return fetch("/score-emotions", {
         method: 'post',
         headers: new Headers({
             'Content-Type': 'application/octet-stream'
