@@ -4,7 +4,6 @@ import router from './../router/'
 import 'whatwg-fetch'
 import checkStatus from 'fetch-check-http-status'
 import sortByEmotionScore from './utils/sortByEmotionScore'
-// import { blobToBase64String } from 'blob-util'
 
 const {
     VUE_APP_AZURE_FUNC_EMOTION_API_ENDPOINT,

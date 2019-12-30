@@ -175,7 +175,6 @@ export default {
      */
 
     [SCORE_EMOTION_FAILURE] (state, error) {
-        console.log(error)
         state.fetching = false
         hurt.play()
         // TODO: Customize the alert based on the error message
