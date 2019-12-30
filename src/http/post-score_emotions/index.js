@@ -1,52 +1,48 @@
-const request = require("request")
-const { FACE_API_KEY, FACE_API_URL } = process.env
+const got = require('got')
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Credentials": true
 }
 
-function getEmotions(image, callback) {
+const {
+  FACE_API_KEY,
+  FACE_API_URL
+} = process.env
+
+async function detectEmotions(image) {
   const params = {
     returnFaceAttributes: "emotion"
   }
 
   const options = {
-    uri: FACE_API_URL,
-    qs: params,
-    body: image,
     headers: {
       "Content-Type": "application/octet-stream",
       "Ocp-Apim-Subscription-Key": FACE_API_KEY
-    }
+    },
+    searchParams: params,
+    body: image
   }
 
-  request.post(options, (error, response, body) => {
-    if (error) {
-      console.log("Error: " + error)
-      return callback(error)
-    }
-
-    callback(null, JSON.parse(body))
-  })
+  const response = await got.post(FACE_API_URL, options)
+  return JSON.parse(response["body"])
 }
 
-module.exports = function(req) {
-  const image = req.body
+exports.handler = async function(req) {
+  const body = Buffer.from(req.body, 'base64')
 
-  getEmotions(image, (err, response) => {
-    if (err) {
-      return {
-        status: 400,
-        headers,
-        body: "Please pass a name on the query string or in the request body"
-      }
-    }
-
+  try {
+    const response = await detectEmotions(body)
     return {
-      status: 200,
       headers,
       body: JSON.stringify(response)
     }
-  })
+  } catch (e) {
+    // Error handling
+    return {
+      status: 500,
+      headers,
+      body: JSON.stringify({message: e.message})
+    }
+  }
 }

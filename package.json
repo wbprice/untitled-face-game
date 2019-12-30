@@ -32,7 +32,6 @@
     "vue-template-compiler": "^2.6.10"
   },
   "dependencies": {
-    "blob-util": "^2.0.2",
     "fetch-check-http-status": "^2.0.0",
     "lodash.shuffle": "^4.2.0",
     "vue-router": "^3.1.3",
