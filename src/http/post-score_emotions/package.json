@@ -3,6 +3,6 @@
   "dependencies": {
     "@architect/functions": "latest",
     "@begin/data": "latest",
-    "got": "^10.2.0"
+    "got": "^11.8.5"
   }
 }
